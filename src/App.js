@@ -43,6 +43,9 @@ class App extends Component {
       {
         imgSrc: 'http://bulma.io/images/placeholders/128x128.png'
       },
+      {
+        imgSrc: ''
+      },
     ]
 
     for (var i in data){
@@ -51,11 +54,9 @@ class App extends Component {
 
     return (
       <div className="example">
-        <h4>Css modal</h4>
-        <button className="btn btn-action" onClick={this.onOpenModal}>
-          Open
-        </button>{' '}
-        <Modal open={open} onClose={this.onCloseModal} little>
+        <h4>Modal</h4>
+        <button className="btn btn-action" onClick={this.onOpenModal}>Open</button>{' '}
+        <Modal open={open} onClose={this.onCloseModal}>
           <h2>Simple centered modal</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
