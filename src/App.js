@@ -2,17 +2,68 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import Modal from 'react-responsive-modal';
+import 'react-responsive-modal/lib/react-responsive-modal.css';
+
 class App extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      open: false,
+    }
+
+    this.onOpenModal = this.onOpenModal.bind(this)
+    this.onCloseModal = this.onCloseModal.bind(this)
+  }
+
+  onOpenModal = () => {
+    this.setState({ open: true });
+  };
+
+  onCloseModal = () => {
+    this.setState({ open: false });
+  };
+
   render() {
+    const { open } = this.state;
+    var imgList = [];
+    var data = [
+      {
+        imgSrc: 'http://bulma.io/images/placeholders/128x128.png'
+      },
+      {
+        imgSrc: 'http://bulma.io/images/placeholders/128x128.png'
+      },
+      {
+        imgSrc: 'http://bulma.io/images/placeholders/128x128.png'
+      },
+      {
+        imgSrc: 'http://bulma.io/images/placeholders/128x128.png'
+      },
+      {
+        imgSrc: 'http://bulma.io/images/placeholders/128x128.png'
+      },
+    ]
+
+    for (var i in data){
+      imgList.push(<li><img src={data[i].imgSrc} /></li>);
+    }
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="example">
+        <h4>Css modal</h4>
+        <button className="btn btn-action" onClick={this.onOpenModal}>
+          Open
+        </button>{' '}
+        <Modal open={open} onClose={this.onCloseModal} little>
+          <h2>Simple centered modal</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+            pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
+            hendrerit risus, sed porttitor quam.
+          </p>
+          <ul>{imgList}</ul>
+        </Modal>
       </div>
     );
   }
