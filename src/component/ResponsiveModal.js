@@ -52,7 +52,7 @@ class ResponsiveModal extends Component {
 
     return (
       <div className="example">
-        <h4>ReactResponsiveModal</h4>
+        <h1>ReactResponsiveModal</h1>
         <button className="btn btn-action" onClick={this.onOpenModal}>Open</button>{' '}
         <Modal open={open} onClose={this.onCloseModal}>
           <h2>Simple centered modal</h2>
