@@ -1,73 +1,33 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-import Modal from 'react-responsive-modal';
-import 'react-responsive-modal/lib/react-responsive-modal.css';
+import { Route, Link, Switch, BrowserRouter } from 'react-router-dom';
+import ResponsiveModal from './component/ResponsiveModal';
+import BulmaModal from './component/BulmaModal';
 
 class App extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      open: false,
-    }
-
-    this.onOpenModal = this.onOpenModal.bind(this)
-    this.onCloseModal = this.onCloseModal.bind(this)
-  }
-
-  onOpenModal = () => {
-    this.setState({ open: true });
-  };
-
-  onCloseModal = () => {
-    this.setState({ open: false });
-  };
-
-  render() {
-    const { open } = this.state;
-    var imgList = [];
-    var data = [
-      {
-        imgSrc: 'http://bulma.io/images/placeholders/128x128.png'
-      },
-      {
-        imgSrc: 'http://bulma.io/images/placeholders/128x128.png'
-      },
-      {
-        imgSrc: 'http://bulma.io/images/placeholders/128x128.png'
-      },
-      {
-        imgSrc: 'http://bulma.io/images/placeholders/128x128.png'
-      },
-      {
-        imgSrc: 'http://bulma.io/images/placeholders/128x128.png'
-      },
-      {
-        imgSrc: ''
-      },
-    ]
-
-    for (var i in data){
-      imgList.push(<li><img src={data[i].imgSrc} /></li>);
-    }
-
+  render(){
     return (
-      <div className="example">
-        <h4>Modal</h4>
-        <button className="btn btn-action" onClick={this.onOpenModal}>Open</button>{' '}
-        <Modal open={open} onClose={this.onCloseModal}>
-          <h2>Simple centered modal</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-            pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
-            hendrerit risus, sed porttitor quam.
-          </p>
-          <ul>{imgList}</ul>
-        </Modal>
-      </div>
-    );
+      <BrowserRouter>
+        <div>
+          <Menu />
+          <Route component={AppRoute} />
+        </div>
+      </BrowserRouter>
+    )
   }
 }
+
+const Menu = () => (
+  <ul>
+    <li><Link exact='true' to="/">ResponsiveModal</Link></li>
+    <li><Link to="/bulma">BulmaModal</Link></li>
+  </ul>
+)
+
+const AppRoute = (props) => (
+  <Switch>
+    <Route exact path="/" component={ResponsiveModal} />
+    <Route path="/bulma" component={BulmaModal} /> 
+  </Switch>
+)
 
 export default App;
