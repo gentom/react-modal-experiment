@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Modal, Button } from 'react-bulma-components/full';
 
 class OpenBulmaModal extends Component {
+    
     static propTypes = {
       modal: PropTypes.object,
       children: PropTypes.node.isRequired,

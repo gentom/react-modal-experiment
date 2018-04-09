@@ -1,10 +1,29 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Modal, Button, Media, Level, Content, Image } from 'react-bulma-components/full';
-import OpenBulmaModal from './OpenBulmaModal';
 
 class BulmaModal extends Component {
+
+    constructor(props){
+        super(props)
+        this.state = {
+            show: false,
+        }
+        this.openModal = this.openModal.bind(this)
+        this.closeModal = this.closeModal.bind(this)
+    }
+
+    openModal(){
+        this.setState({ show: true });
+    }
+
+    closeModal(){
+        this.setState({ show: false });
+    }
     
     render() {
+        const { show } = this.state
+
         var imgList = [];
         var data = [
             {
@@ -33,9 +52,9 @@ class BulmaModal extends Component {
 
         return (
             <div>
-                <h1>BulmaModal</h1>
-                
-                <OpenBulmaModal modal={{ closeOnBlur: true, showClose: false }}>
+                <h1>BulmaModalV2</h1>
+                <Button onClick={this.openModal}>Open</Button>
+                <Modal show={this.state.show} onClose={this.closeModal} closeOnBlur={true} showClose={false}>
                     <Modal.Card>
                         <Modal.Card.Head>
                             <Modal.Card.Title>
@@ -86,7 +105,7 @@ class BulmaModal extends Component {
                             </p>
                         </Modal.Card.Foot>
                     </Modal.Card>
-                </OpenBulmaModal>
+                </Modal>
             </div>
         );
     }
